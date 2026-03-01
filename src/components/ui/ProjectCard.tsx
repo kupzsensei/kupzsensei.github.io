@@ -22,7 +22,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           {String(index + 1).padStart(2, '0')}
         </div>
 
-        <div className="relative z-10 space-y-6">
+        <div className="relative z-10 space-y-6 flex-1 min-h-0 overflow-hidden">
           <div className="font-mono text-xs text-cyan/60 tracking-widest uppercase">
             Project {String(index + 1).padStart(2, '0')}
           </div>
@@ -31,11 +31,11 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             {project.title}
           </h3>
 
-          <p className="max-w-lg font-mono text-sm leading-relaxed text-muted">
+          <p className="max-w-lg font-mono text-sm leading-relaxed text-muted line-clamp-3 md:line-clamp-none">
             {project.description}
           </p>
 
-          <div className="flex flex-wrap gap-2 max-h-20 md:max-h-none overflow-hidden">
+          <div className="flex flex-wrap gap-2 max-h-14 md:max-h-none overflow-hidden">
             {project.tech.map((t) => (
               <TechBadge key={t} name={t} />
             ))}
