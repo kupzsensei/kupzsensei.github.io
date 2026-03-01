@@ -35,7 +35,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             {project.description}
           </p>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 max-h-20 md:max-h-none overflow-hidden">
             {project.tech.map((t) => (
               <TechBadge key={t} name={t} />
             ))}
