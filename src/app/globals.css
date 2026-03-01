@@ -1,26 +1,244 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* ── Cyberpunk Theme ── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-base: #0A0A0F;
+  --color-surface: #12121A;
+  --color-surface-light: #1A1A2E;
+  --color-cyan: #00FFFF;
+  --color-magenta: #FF00FF;
+  --color-blue: #0066FF;
+  --color-green: #39FF14;
+  --color-white: #E0E0E0;
+  --color-muted: #666680;
+  --color-background: #0A0A0F;
+  --color-foreground: #E0E0E0;
+
+  --font-display: var(--font-orbitron), "Orbitron", sans-serif;
+  --font-mono: var(--font-jetbrains), "JetBrains Mono", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Base ── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #00FFFF20 transparent;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-base);
+  color: var(--color-foreground);
+  font-family: var(--font-mono);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #00FFFF30;
+  color: #00FFFF;
+}
+
+/* ── Glitch Text Animation ── */
+@keyframes glitch-1 {
+  0%, 100% { clip-path: inset(40% 0 61% 0); transform: translate(-2px, 2px); }
+  20% { clip-path: inset(92% 0 1% 0); transform: translate(1px, -1px); }
+  40% { clip-path: inset(43% 0 1% 0); transform: translate(-1px, 3px); }
+  60% { clip-path: inset(25% 0 58% 0); transform: translate(3px, 1px); }
+  80% { clip-path: inset(54% 0 7% 0); transform: translate(-3px, -2px); }
+}
+
+@keyframes glitch-2 {
+  0%, 100% { clip-path: inset(24% 0 29% 0); transform: translate(2px, -2px); }
+  20% { clip-path: inset(54% 0 36% 0); transform: translate(-3px, 1px); }
+  40% { clip-path: inset(15% 0 64% 0); transform: translate(2px, -3px); }
+  60% { clip-path: inset(76% 0 12% 0); transform: translate(-2px, 2px); }
+  80% { clip-path: inset(3% 0 48% 0); transform: translate(1px, 3px); }
+}
+
+@keyframes glitch-skew {
+  0%, 100% { transform: skew(0deg); }
+  20% { transform: skew(-2deg); }
+  40% { transform: skew(0.5deg); }
+  60% { transform: skew(-0.5deg); }
+  80% { transform: skew(1deg); }
+}
+
+.glitch-text {
+  position: relative;
+  animation: glitch-skew 4s infinite linear alternate-reverse;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  color: #00FFFF;
+  animation: glitch-1 3s infinite linear alternate-reverse;
+  z-index: -1;
+}
+
+.glitch-text::after {
+  color: #FF00FF;
+  animation: glitch-2 3s infinite linear alternate-reverse;
+  z-index: -1;
+}
+
+/* ── Typing Cursor ── */
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typing-cursor::after {
+  content: "█";
+  animation: blink-cursor 1s step-end infinite;
+  color: #00FFFF;
+}
+
+/* ── Scan Lines Overlay ── */
+.scan-lines {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+}
+
+/* ── Noise Overlay ── */
+@keyframes noise-shift {
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -5%); }
+  20% { transform: translate(-10%, 5%); }
+  30% { transform: translate(5%, -10%); }
+  40% { transform: translate(-5%, 15%); }
+  50% { transform: translate(-10%, 5%); }
+  60% { transform: translate(15%, 0); }
+  70% { transform: translate(0, 10%); }
+  80% { transform: translate(-15%, 0); }
+  90% { transform: translate(10%, 5%); }
+  100% { transform: translate(5%, 0); }
+}
+
+.noise-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: -50%;
+  z-index: 50;
+  width: 200%;
+  height: 200%;
+  opacity: 0.03;
+  animation: noise-shift 0.2s steps(10) infinite;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+}
+
+/* ── Grid Background ── */
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── Neon Glow Utilities ── */
+.glow-cyan {
+  text-shadow: 0 0 7px #00FFFF, 0 0 10px #00FFFF, 0 0 21px #00FFFF, 0 0 42px #00FFFF40;
+}
+
+.glow-magenta {
+  text-shadow: 0 0 7px #FF00FF, 0 0 10px #FF00FF, 0 0 21px #FF00FF, 0 0 42px #FF00FF40;
+}
+
+.glow-green {
+  text-shadow: 0 0 7px #39FF14, 0 0 10px #39FF14, 0 0 21px #39FF14, 0 0 42px #39FF1440;
+}
+
+.box-glow-cyan {
+  box-shadow: 0 0 5px #00FFFF40, 0 0 20px #00FFFF20, inset 0 0 5px #00FFFF10;
+}
+
+.box-glow-magenta {
+  box-shadow: 0 0 5px #FF00FF40, 0 0 20px #FF00FF20, inset 0 0 5px #FF00FF10;
+}
+
+/* ── Custom Scrollbar (Webkit) ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00FFFF30;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00FFFF60;
+}
+
+/* ── Focus Ring ── */
+:focus-visible {
+  outline: 2px solid #00FFFF;
+  outline-offset: 2px;
+}
+
+/* ── Skip to Content ── */
+.skip-to-content {
+  position: fixed;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  padding: 0.75rem 1.5rem;
+  background: #0A0A0F;
+  border: 1px solid #00FFFF;
+  color: #00FFFF;
+  font-family: var(--font-mono);
+  transition: top 0.2s;
+}
+
+.skip-to-content:focus {
+  top: 1rem;
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .glitch-text::before,
+  .glitch-text::after {
+    display: none;
+  }
+
+  .noise-overlay,
+  .scan-lines {
+    display: none;
+  }
 }

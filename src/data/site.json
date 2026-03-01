@@ -1,0 +1,178 @@
+{
+  "name": "BEN JOHN VILLABESA",
+  "title": "Full-Stack Software Engineer // Building the Future",
+
+  "about": {
+    "bio": [
+      "Software engineer with 5+ years of experience building high-performance systems at scale. Passionate about clean architecture, distributed computing, and pushing the boundaries of what's possible on the web.",
+      "Currently focused on real-time data infrastructure and developer tooling. When not writing code, you'll find me contributing to open-source projects or reverse-engineering interesting systems.",
+      "I believe in writing code that's not just functional, but elegant — systems that are maintainable, performant, and a joy to work with."
+    ],
+    "skills": [
+      { "label": "Systems Architecture", "value": 92 },
+      { "label": "Frontend Engineering", "value": 88 },
+      { "label": "Backend & APIs", "value": 95 },
+      { "label": "DevOps & Cloud", "value": 85 },
+      { "label": "Machine Learning", "value": 78 }
+    ]
+  },
+
+  "projects": [
+    {
+      "id": 1,
+      "title": "NEURAL NETWORK VISUALIZER",
+      "description": "Real-time 3D visualization of neural network architectures. Drag-and-drop layer configuration with live inference previews and gradient flow animation.",
+      "longDescription": [
+        "Built a comprehensive web-based tool for visualizing neural network architectures in real-time 3D. Users can drag and drop layers to construct models, observe live inference as data flows through the network, and watch gradient flow animations during backpropagation.",
+        "The frontend renders complex graph structures using Three.js with custom WebGL shaders for data flow visualization. The backend runs actual PyTorch models through a FastAPI server, streaming intermediate activations via WebSockets.",
+        "Key technical challenge was maintaining 60fps rendering while continuously updating node activations from the inference server. Solved this with a double-buffered state system and GPU-accelerated particle effects for data flow."
+      ],
+      "tech": ["TypeScript", "Three.js", "WebGL", "Python", "FastAPI"],
+      "features": [
+        "Drag-and-drop layer construction",
+        "Real-time inference visualization",
+        "Gradient flow animation",
+        "Export to PyTorch/TensorFlow code",
+        "Collaborative editing via WebSockets"
+      ],
+      "role": "Solo Developer",
+      "year": "2025"
+    },
+    {
+      "id": 2,
+      "title": "DECENTRALIZED CHAT PROTOCOL",
+      "description": "End-to-end encrypted peer-to-peer messaging built on WebRTC with distributed hash table routing. Zero server dependency after initial handshake.",
+      "longDescription": [
+        "Designed and implemented a fully decentralized messaging protocol that operates without any central server after the initial peer discovery phase. Messages are end-to-end encrypted using the Signal Protocol adapted for a P2P context.",
+        "The routing layer uses a Kademlia-based DHT for peer discovery and message relay. NAT traversal is handled through a combination of STUN/TURN and hole punching techniques, achieving direct connections in 85% of cases.",
+        "Built the core networking layer in Rust compiled to WebAssembly for browser compatibility, with a React frontend that provides a familiar chat interface while the complexity of the P2P network is abstracted away."
+      ],
+      "tech": ["Rust", "WebRTC", "React", "WebAssembly", "libp2p"],
+      "features": [
+        "Zero-knowledge message routing",
+        "Signal Protocol encryption",
+        "Offline message queuing via relay nodes",
+        "File sharing with chunked transfer",
+        "Group chat with distributed consensus"
+      ],
+      "role": "Lead Developer",
+      "year": "2024"
+    },
+    {
+      "id": 3,
+      "title": "AUTONOMOUS DRONE SWARM",
+      "description": "Multi-agent coordination system for drone swarms using reinforcement learning. Collision avoidance and formation control in simulated environments.",
+      "longDescription": [
+        "Developed a multi-agent reinforcement learning system that enables swarms of 50+ drones to coordinate autonomously. The agents learn cooperative behaviors like formation flying, area coverage, and target tracking without explicit programming.",
+        "The RL training pipeline uses a custom multi-agent PPO implementation with shared critic networks. Training runs on a cluster of 8 GPUs with the Gazebo simulator providing realistic physics and sensor models.",
+        "Achieved 95% collision avoidance rate in dense swarm scenarios and demonstrated emergent cooperative behaviors like leader-follower formation and dynamic task allocation."
+      ],
+      "tech": ["Python", "PyTorch", "ROS2", "C++", "Gazebo"],
+      "features": [
+        "Multi-agent PPO with shared critic",
+        "Realistic physics simulation",
+        "Dynamic formation control",
+        "Collision avoidance in dense swarms",
+        "Sim-to-real transfer pipeline"
+      ],
+      "role": "Research Engineer",
+      "year": "2024"
+    },
+    {
+      "id": 4,
+      "title": "QUANTUM COMPILER TOOLKIT",
+      "description": "Transpiler and optimizer for quantum circuits targeting multiple hardware backends. Includes gate decomposition and noise-aware routing.",
+      "longDescription": [
+        "Created an open-source quantum circuit compiler that takes high-level quantum algorithms and optimizes them for specific hardware backends including IBM, Google, and IonQ quantum processors.",
+        "The compiler performs multi-pass optimization: first decomposing arbitrary gates into the hardware's native gate set, then routing qubits to match the physical connectivity graph, and finally applying noise-aware scheduling to minimize decoherence errors.",
+        "The core compiler is written in Rust for performance, with Python bindings for integration with Qiskit and Cirq. The LLVM-inspired intermediate representation allows for easy addition of new optimization passes."
+      ],
+      "tech": ["Python", "Qiskit", "Cirq", "Rust", "LLVM"],
+      "features": [
+        "Multi-backend targeting (IBM, Google, IonQ)",
+        "Noise-aware qubit routing",
+        "Gate decomposition optimizer",
+        "LLVM-inspired IR for quantum circuits",
+        "Python + Rust hybrid architecture"
+      ],
+      "role": "Core Contributor",
+      "year": "2023"
+    }
+  ],
+
+  "experience": [
+    {
+      "id": 1,
+      "role": "Senior Software Engineer",
+      "company": "PrimeDesk Solutions",
+      "period": "2025 — Present",
+      "description": [
+        "Led development of real-time data pipeline processing 2M+ events/sec",
+        "Architected microservices migration reducing latency by 40%",
+        "Mentored team of 5 engineers across 3 time zones"
+      ],
+      "tech": ["Go", "Kubernetes", "Kafka", "PostgreSQL"]
+    },
+    {
+      "id": 2,
+      "role": "Cyber Security Analyst / Developer",
+      "company": "Cecuri",
+      "period": "2024 — 2025",
+      "description": [
+        "Built customer-facing dashboard serving 100K+ daily users",
+        "Implemented CI/CD pipeline cutting deployment time by 60%",
+        "Designed GraphQL API layer for unified data access"
+      ],
+      "tech": ["TypeScript", "React", "Node.js", "GraphQL"]
+    },
+    {
+      "id": 3,
+      "role": "Instructor / System Developer",
+      "company": "MFI Polytechnic Institute Inc.",
+      "period": "2020 — 2022",
+      "description": [
+        "Developed distributed storage engine with 99.99% uptime",
+        "Optimized query engine resulting in 3x throughput improvement",
+        "Built internal tooling used by 200+ developers"
+      ],
+      "tech": ["Rust", "Python", "Redis", "AWS"]
+    },
+    {
+      "id": 4,
+      "role": "MIS Analyst / IT Specialist",
+      "company": "LA Global Product Trends Inc.",
+      "period": "2019 — 2020",
+      "description": [
+        "Contributed to open-source ML framework with 5K+ stars",
+        "Built data preprocessing pipeline for NLP research team",
+        "Published internal paper on efficient transformer inference"
+      ],
+      "tech": ["Python", "PyTorch", "Docker", "Linux"]
+    }
+  ],
+
+  "techStack": [
+    { "name": "TypeScript", "icon": "TS", "category": "language" },
+    { "name": "Python", "icon": "PY", "category": "language" },
+    { "name": "Django", "icon": "Django", "category": "framework" },
+    { "name": "Django Rest Framework", "icon": "DRF", "category": "framework" },
+    { "name": "Flask", "icon": "FL", "category": "framework" },
+    { "name": "React", "icon": "RE", "category": "framework" },
+    { "name": "Next.js", "icon": "NX", "category": "framework" },
+    { "name": "Node.js", "icon": "ND", "category": "framework" },
+    { "name": "FastAPI", "icon": "FA", "category": "framework" },
+    { "name": "Docker", "icon": "DK", "category": "tool" },
+    { "name": "Git", "icon": "GT", "category": "tool" },
+    { "name": "PostgreSQL", "icon": "PG", "category": "tool" },
+    { "name": "Redis", "icon": "RD", "category": "tool" },   
+    { "name": "LangChain", "icon": "LC", "category": "tool" },
+    { "name": "LangGraph", "icon": "LG", "category": "tool" },
+    { "name": "vLLM", "icon": "vLLM", "category": "tool" },
+    { "name": "Ollama", "icon": "OLLAMA", "category": "tool" }
+  
+  ],
+  "socials": [
+    { "label": "GitHub", "url": "https://github.com/kupzsensei" },
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/ben-john-villabesa-b434a5213/" }
+  ]
+}
