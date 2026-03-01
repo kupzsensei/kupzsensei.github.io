@@ -13,7 +13,7 @@ export default function Navigation() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo */}
         <a
-          href="#"
+          href="/"
           className="font-display text-sm font-bold tracking-widest text-cyan glow-cyan"
         >
           &lt;PORTFOLIO /&gt;

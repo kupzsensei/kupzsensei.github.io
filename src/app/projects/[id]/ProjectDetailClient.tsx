@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { GlitchText, TechBadge, NeonButton } from '@/components/ui';
 import type { Project } from '@/types';
@@ -22,13 +21,13 @@ export default function ProjectDetailClient({ project, index }: Props) {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4 }}
         >
-          <Link
+          <a
             href="/#projects"
             className="inline-flex items-center gap-2 font-mono text-xs text-cyan/60 transition-colors hover:text-cyan mb-12 group"
           >
             <span className="transition-transform group-hover:-translate-x-1">&lt;-</span>
             BACK TO ALL PROJECTS
-          </Link>
+          </a>
         </motion.div>
 
         {/* Header */}

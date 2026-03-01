@@ -4,99 +4,220 @@
 
   "about": {
     "bio": [
-      "Software engineer with 5+ years of experience building high-performance systems at scale. Passionate about clean architecture, distributed computing, and pushing the boundaries of what's possible on the web.",
-      "Currently focused on real-time data infrastructure and developer tooling. When not writing code, you'll find me contributing to open-source projects or reverse-engineering interesting systems.",
-      "I believe in writing code that's not just functional, but elegant — systems that are maintainable, performant, and a joy to work with."
+      "Full-stack software engineer with 5+ years of experience building end-to-end systems — from warehouse management and supply chain platforms to AI-powered content orchestration and cybersecurity intelligence tools.",
+      "Currently building AI-integrated platforms at PrimeDesk Solutions and Cecuri, working with self-hosted LLM inference (vLLM, Ollama), agentic AI pipelines (LangChain/LangGraph), and multi-GPU task orchestration.",
+      "I enjoy owning the full stack — designing backend APIs, building responsive frontends, developing mobile apps, and wiring up the infrastructure to make it all run reliably in production."
     ],
     "skills": [
-      { "label": "Systems Architecture", "value": 92 },
-      { "label": "Frontend Engineering", "value": 88 },
       { "label": "Backend & APIs", "value": 95 },
-      { "label": "DevOps & Cloud", "value": 85 },
-      { "label": "Machine Learning", "value": 78 }
+      { "label": "Frontend Engineering", "value": 90 },
+      { "label": "AI & LLM Integration", "value": 88 },
+      { "label": "Mobile Development", "value": 82 },
+      { "label": "DevOps & Infrastructure", "value": 85 }
     ]
   },
 
   "projects": [
     {
-      "id": 1,
-      "title": "NEURAL NETWORK VISUALIZER",
-      "description": "Real-time 3D visualization of neural network architectures. Drag-and-drop layer configuration with live inference previews and gradient flow animation.",
+      "id": 4,
+      "title": "ShortsEngine",
+      "description": "AI-powered YouTube Shorts automation platform that generates and uploads vertical video content at scale — combining multi-GPU inference (Ollama LLM, Stable Diffusion, Coqui TTS), trending topic discovery, video clipping automation with Whisper transcription and LLM highlight detection, and YouTube API integration for scheduled publishing and analytics.",
       "longDescription": [
-        "Built a comprehensive web-based tool for visualizing neural network architectures in real-time 3D. Users can drag and drop layers to construct models, observe live inference as data flows through the network, and watch gradient flow animations during backpropagation.",
-        "The frontend renders complex graph structures using Three.js with custom WebGL shaders for data flow visualization. The backend runs actual PyTorch models through a FastAPI server, streaming intermediate activations via WebSockets.",
-        "Key technical challenge was maintaining 60fps rendering while continuously updating node activations from the inference server. Solved this with a double-buffered state system and GPU-accelerated particle effects for data flow."
+        "Built a full-stack content automation platform that generates YouTube Shorts from trending topics end-to-end — from news discovery and article scraping through AI script generation, image synthesis, text-to-speech with word-level timestamps, video assembly with animated captions, and automatic YouTube upload. The system runs on a 4x RTX 4090 server with GPU-specific Celery task queues: GPUs 0-2 for parallel Stable Diffusion image generation via ComfyUI WebSocket API, GPU 3 for Coqui XTTS-v2 voice cloning, and Ollama for script generation.",
+        "The video clipping pipeline automates repurposing of trending content from YouTube, Twitch, and Twitter — downloading videos via yt-dlp, transcribing with Whisper for word-level timestamps, detecting viral-worthy moments using LLM analysis with customizable prompts (e.g., rap battle punchlines, crowd reactions), extracting clips with FFmpeg, applying 9:16 vertical cropping, and queuing for approval or auto-upload. Each account can configure custom highlight detection prompts, clip duration constraints, crop modes, and auto-approval settings.",
+        "The platform supports multi-account management with per-account configuration for niche, prompt templates, visual styles, TTS voices, caption styles, scheduling intervals, and YouTube OAuth credentials. The React admin dashboard provides account management, content queue with preview and approval workflow, real-time generation progress tracking via Redis pub/sub, clipping source management, and YouTube analytics sync. Infrastructure includes PostgreSQL for persistence, Redis for Celery broker and progress tracking, MinIO for media storage, and Nginx reverse proxy with SSL."
       ],
-      "tech": ["TypeScript", "Three.js", "WebGL", "Python", "FastAPI"],
+      "tech": [
+        "FastAPI",
+        "Python 3.11",
+        "PostgreSQL 15",
+        "Redis 7",
+        "Celery 5.3",
+        "SQLAlchemy 2.0 (async)",
+        "Ollama",
+        "Stable Diffusion (ComfyUI)",
+        "Coqui TTS (XTTS-v2)",
+        "Whisper",
+        "FFmpeg",
+        "MoviePy",
+        "yt-dlp",
+        "React 18",
+        "TypeScript 5",
+        "Vite",
+        "TailwindCSS",
+        "Radix UI",
+        "TanStack Query",
+        "Zustand",
+        "React Hook Form",
+        "Zod",
+        "Recharts",
+        "Playwright",
+        "Google YouTube Data API v3",
+        "SerpAPI",
+        "Trafilatura",
+        "MinIO",
+        "Nginx",
+        "Docker"
+      ],
       "features": [
-        "Drag-and-drop layer construction",
-        "Real-time inference visualization",
-        "Gradient flow animation",
-        "Export to PyTorch/TensorFlow code",
-        "Collaborative editing via WebSockets"
+        "Multi-GPU content pipeline with task queue routing: image generation (GPUs 0-2), TTS (GPU 3), LLM script generation (Ollama)",
+        "End-to-end Shorts generation: topic discovery → article scraping → script generation → image synthesis → TTS → video assembly → YouTube upload",
+        "Video clipping automation: download trending videos (YouTube/Twitch/Twitter) → Whisper transcription → LLM highlight detection → clip extraction → vertical crop",
+        "Customizable highlight detection with per-account LLM prompts (e.g., rap battle punchlines, crowd reactions, controversy)",
+        "Stable Diffusion image generation via ComfyUI WebSocket API with Ken Burns animation effects",
+        "Coqui XTTS-v2 voice cloning with word-level timestamps for animated captions",
+        "YouTube OAuth integration with automatic upload, scheduling, and analytics sync",
+        "Multi-account management with per-account niche, prompts, visual styles, TTS voices, and scheduling",
+        "Content queue with video preview, approval workflow, and bulk operations",
+        "Real-time generation progress tracking via Redis with stage-by-stage status updates",
+        "Automatic retry with topic fallback when article scraping or script generation fails",
+        "Scheduled content generation with configurable intervals and auto-approval options",
+        "Clipping source management for YouTube channels, playlists, and individual videos",
+        "Video processing with 9:16 vertical cropping, caption overlay, and thumbnail generation"
+      ],
+      "role": "Solo Developer (Personal Project)",
+      "year": "2026"
+    },
+    {
+      "id": 3,
+      "title": "MODEXIS",
+      "description": "AI-powered content orchestration platform for SEO-driven web publishing at scale — combining LLM-based article generation, geographic/vertical directory graph targeting, multi-channel publishing (Astro SSR + WordPress), campaign lifecycle management with domain provisioning, and enterprise content governance through playbooks, QA agents, and policy enforcement.",
+      "longDescription": [
+        "Built a full-stack content orchestration platform that automates the entire lifecycle of SEO-optimized web content — from topic research and outline generation through AI-powered article writing, quality assurance, deduplication, and multi-channel publishing. The system runs a local vLLM inference server (Llama-3.1-8B on dual GPUs) with micro-batching for throughput, orchestrated by Celery workers across specialized task queues for bulk dispatch, per-site generation, and publishing.",
+        "The platform models a directory graph of verticals (industries), geographic markets (state/city/neighborhood), page types (hub, money, supporting), and topic intents (informational, transactional, navigational) to produce targeted content at scale. Campaigns coordinate multi-site generation with automatic domain provisioning (DNS validation, Let's Encrypt SSL, Nginx config), while playbooks define reusable content workflows with routing rules, page matrix compilation, and validation gates. A policy system enforces content contracts including word count constraints, required sections (P3 template), deduplication thresholds, internal link mesh rules, source restrictions, and vertical-specific disclaimers.",
+        "The admin Control Center provides a 3-step article generation wizard, campaign management with lifecycle tracking and per-entry status monitoring, playbook configuration, job monitoring with real-time progress, and a knowledge base for content collections and entity management. The public-facing Astro SSR site dynamically resolves page specs via host-header routing for campaign domains, renders directory pages with JSON-LD schema markup, and generates per-domain XML sitemaps. Monitoring is handled through Prometheus metrics scraping and Grafana dashboards tracking LLM throughput, job status, and system health."
+      ],
+      "tech": [
+        "Flask 3.0",
+        "Python 3.11",
+        "PostgreSQL 16",
+        "Redis 7.2",
+        "Celery 5.3",
+        "SQLAlchemy 2.0",
+        "vLLM",
+        "Llama 3.1 8B",
+        "Next.js 14",
+        "React 18",
+        "TypeScript 5",
+        "Astro 4.0",
+        "Preact",
+        "TailwindCSS",
+        "Radix UI",
+        "TanStack Query",
+        "Zustand",
+        "Zod",
+        "Playwright",
+        "Prometheus",
+        "Grafana",
+        "Nginx",
+        "Docker",
+        "SerpAPI"
+      ],
+      "features": [
+        "Local LLM inference via vLLM (Llama-3.1-8B, dual GPU) with micro-batching for high-throughput article generation",
+        "End-to-end content pipeline: topic generation → outline building → article writing → QA → dedup → publishing",
+        "Directory graph architecture with verticals, geographic markets, page types, and topic intent classification",
+        "Campaign lifecycle management with multi-site orchestration, per-entry status tracking, and bulk article scoping",
+        "Automatic domain provisioning with DNS validation, Let's Encrypt SSL, and Nginx configuration management",
+        "Multi-channel publishing to Astro SSR (host-header routed campaign sites) and WordPress REST API",
+        "Playbook system for reusable content workflows with routing rules, page matrix compilation, and validation gates",
+        "Enterprise content governance through policy profiles (word count contracts, P3 template enforcement, source restrictions, dedup thresholds)",
+        "3-step content generation wizard with campaign-scoped bulk generation and real-time job monitoring",
+        "QA agent with fact-checking, confidence scoring, and P3 template compliance with auto-rewrite capability",
+        "Internal link mesh generation with link policy enforcement and URL inventory tracking",
+        "Dynamic XML sitemap generation, JSON-LD schema markup, and GSC/IndexNow indexing submission",
+        "Prometheus + Grafana observability stack monitoring LLM throughput, job status, and system health",
+        "Comprehensive E2E test suite (104 Playwright tests) covering CRUD, campaign lifecycle, and content workflows"
       ],
       "role": "Solo Developer",
       "year": "2025"
     },
     {
       "id": 2,
-      "title": "DECENTRALIZED CHAT PROTOCOL",
-      "description": "End-to-end encrypted peer-to-peer messaging built on WebRTC with distributed hash table routing. Zero server dependency after initial handshake.",
+      "title": "CERBERUS AI",
+      "description": "Full-stack cybersecurity intelligence and AI-powered document analysis platform with multi-LLM integration, automated threat research pipelines, local file management with RAG-based Q&A, and scheduled email reporting.",
       "longDescription": [
-        "Designed and implemented a fully decentralized messaging protocol that operates without any central server after the initial peer discovery phase. Messages are end-to-end encrypted using the Signal Protocol adapted for a P2P context.",
-        "The routing layer uses a Kademlia-based DHT for peer discovery and message relay. NAT traversal is handled through a combination of STUN/TURN and hole punching techniques, achieving direct connections in 85% of cases.",
-        "Built the core networking layer in Rust compiled to WebAssembly for browser compatibility, with a React frontend that provides a familiar chat interface while the complexity of the P2P network is abstracted away."
+        "Built a comprehensive cybersecurity intelligence platform that combines AI-powered document processing, threat research, and investigation capabilities into a unified web application. The system integrates multiple LLM backends (Ollama, Google Gemini) via LangChain for flexible AI orchestration, supporting PDF analysis with OCR fallback, conversational chat, and structured incident investigations.",
+        "The research pipeline features an API-free discovery engine using RSS feeds, XML sitemaps, and polite domain crawling — with optional SearXNG, SERPAPI, and Tavily integration. Research jobs follow a draft-first workflow with multi-criteria scoring, AU-bias filtering, keyword pattern matching, and real-time progress streaming via Server-Sent Events. Completed research can be finalized into structured Markdown reports and delivered on schedule via configurable SMTP email automation.",
+        "A local storage module provides hierarchical file management supporting PDF, DOCX, CSV, XLSX, and MSG formats with batch OCR processing and multi-turn RAG-powered chat sessions over uploaded documents. The platform also includes ISO 27001 policy review with per-policy alignment scoring, an immutable cache management layer for discovery results, and full Docker Compose orchestration with PostgreSQL, SearXNG, Nginx reverse proxy, and health-checked services."
       ],
-      "tech": ["Rust", "WebRTC", "React", "WebAssembly", "libp2p"],
+      "tech": [
+        "FastAPI",
+        "Python 3.11",
+        "PostgreSQL 16",
+        "SQLite",
+        "LangChain",
+        "LangGraph",
+        "Ollama",
+        "Google Gemini",
+        "React 19",
+        "Vite 7",
+        "JavaScript",
+        "Tailwind CSS",
+        "TanStack Query",
+        "React Router",
+        "SearXNG",
+        "APScheduler",
+        "PyMuPDF",
+        "Tesseract OCR",
+        "Nginx",
+        "Docker"
+      ],
       "features": [
-        "Zero-knowledge message routing",
-        "Signal Protocol encryption",
-        "Offline message queuing via relay nodes",
-        "File sharing with chunked transfer",
-        "Group chat with distributed consensus"
+        "Multi-LLM integration with dynamic model selection (Ollama + Gemini via LangChain)",
+        "PDF processing with text extraction and Tesseract OCR fallback for scanned documents",
+        "Automated threat research pipeline with draft-first workflow and multi-criteria scoring",
+        "API-free discovery engine using RSS feeds, XML sitemaps, and polite domain crawling",
+        "Real-time research progress streaming via Server-Sent Events (SSE)",
+        "Local file management with hierarchical folders and batch OCR processing",
+        "RAG-powered multi-turn chat sessions over uploaded documents (PDF, DOCX, CSV, XLSX, MSG)",
+        "Scheduled email automation with SMTP config, recipient groups, and delivery logging",
+        "ISO 27001 policy review with per-policy alignment scoring and rating methodology",
+        "Quick AI-driven incident investigations with structured summaries and references",
+        "In-memory discovery cache with TTL, domain-level eviction, and refetch capabilities",
+        "Dockerized deployment with PostgreSQL, SearXNG, Nginx reverse proxy, and health checks"
       ],
-      "role": "Lead Developer",
+      "role": "Solo Developer",
       "year": "2024"
     },
     {
-      "id": 3,
-      "title": "AUTONOMOUS DRONE SWARM",
-      "description": "Multi-agent coordination system for drone swarms using reinforcement learning. Collision avoidance and formation control in simulated environments.",
+      "id": 1,
+      "title": "WAREHOUSE MANAGEMENT SYSTEM",
+      "description": "Full-stack multi-warehouse inventory and supply chain platform with mobile warehouse operations, barcode scanning, point-of-sale, and real-time stock tracking across warehouses and retail stores.",
       "longDescription": [
-        "Developed a multi-agent reinforcement learning system that enables swarms of 50+ drones to coordinate autonomously. The agents learn cooperative behaviors like formation flying, area coverage, and target tracking without explicit programming.",
-        "The RL training pipeline uses a custom multi-agent PPO implementation with shared critic networks. Training runs on a cluster of 8 GPUs with the Gazebo simulator providing realistic physics and sensor models.",
-        "Achieved 95% collision avoidance rate in dense swarm scenarios and demonstrated emergent cooperative behaviors like leader-follower formation and dynamic task allocation."
+        "Built a comprehensive Warehouse Management System that tracks inventory across the entire supply chain — from supplier goods receipt at warehouses, through internal transfers and deliveries, to retail store point-of-sale. The platform supports multi-warehouse and multi-store operations with role-based access control for admins, managers, warehouse staff, and viewers.",
+        "The system features a robust transaction workflow engine supporting four transaction types (Receive, Transfer, Deliver, Pull Out) each with strict status state machines. Delivery transactions follow an extended 8-stage workflow (draft → picking → DR generated → checking → packing → dispatched → received) with mobile pick/check operations using barcode scanning.",
+        "A companion mobile app built with Expo serves dual roles: warehouse staff use it for picking, checking, and dispatching deliveries with barcode scanning, while store staff use it as a full point-of-sale terminal with cart management, multiple payment methods, and receipt printing. Every action across the system is recorded in an immutable audit log with before/after JSON snapshots for complete traceability."
       ],
-      "tech": ["Python", "PyTorch", "ROS2", "C++", "Gazebo"],
+      "tech": [
+        "Django REST Framework",
+        "PostgreSQL",
+        "Redis",
+        "Celery",
+        "Next.js 16",
+        "React 19",
+        "TypeScript",
+        "TanStack Query",
+        "shadcn/ui",
+        "Tailwind CSS",
+        "Expo SDK 54",
+        "React Native",
+        "Docker"
+      ],
       "features": [
-        "Multi-agent PPO with shared critic",
-        "Realistic physics simulation",
-        "Dynamic formation control",
-        "Collision avoidance in dense swarms",
-        "Sim-to-real transfer pipeline"
+        "Multi-warehouse real-time inventory tracking with reserved/available quantities",
+        "4-type transaction workflow engine with strict status state machines",
+        "Mobile barcode scanning for warehouse pick/check/dispatch operations",
+        "Mobile point-of-sale with cart, multiple payment methods, and receipt printing",
+        "Store inventory auto-populated on delivery receipt via process_delivery_to_store",
+        "Drag-and-drop delivery receipt print layout designer",
+        "Immutable audit trail logging every create, update, delete, and status change",
+        "Role-based access control (Admin, Manager, Warehouse Staff, Viewer)",
+        "Product catalog with SKU auto-generation, barcode lookup, and lot/batch tracking",
+        "Dashboard with KPIs, supplier management, and customer management"
       ],
-      "role": "Research Engineer",
-      "year": "2024"
-    },
-    {
-      "id": 4,
-      "title": "QUANTUM COMPILER TOOLKIT",
-      "description": "Transpiler and optimizer for quantum circuits targeting multiple hardware backends. Includes gate decomposition and noise-aware routing.",
-      "longDescription": [
-        "Created an open-source quantum circuit compiler that takes high-level quantum algorithms and optimizes them for specific hardware backends including IBM, Google, and IonQ quantum processors.",
-        "The compiler performs multi-pass optimization: first decomposing arbitrary gates into the hardware's native gate set, then routing qubits to match the physical connectivity graph, and finally applying noise-aware scheduling to minimize decoherence errors.",
-        "The core compiler is written in Rust for performance, with Python bindings for integration with Qiskit and Cirq. The LLVM-inspired intermediate representation allows for easy addition of new optimization passes."
-      ],
-      "tech": ["Python", "Qiskit", "Cirq", "Rust", "LLVM"],
-      "features": [
-        "Multi-backend targeting (IBM, Google, IonQ)",
-        "Noise-aware qubit routing",
-        "Gate decomposition optimizer",
-        "LLVM-inspired IR for quantum circuits",
-        "Python + Rust hybrid architecture"
-      ],
-      "role": "Core Contributor",
-      "year": "2023"
+      "role": "Solo Developer",
+      "year": "2019"
     }
   ],
 
@@ -107,69 +228,74 @@
       "company": "PrimeDesk Solutions",
       "period": "2025 — Present",
       "description": [
-        "Led development of real-time data pipeline processing 2M+ events/sec",
-        "Architected microservices migration reducing latency by 40%",
-        "Mentored team of 5 engineers across 3 time zones"
+        "Built the Modexis platform — an AI-powered content orchestration system for SEO publishing and campaign management",
+        "Developed LLM inference pipelines and integrated vLLM for scalable content generation",
+        "Architected full-stack application with Next.js frontend and Flask backend with Celery task processing"
       ],
-      "tech": ["Go", "Kubernetes", "Kafka", "PostgreSQL"]
+      "tech": ["Flask", "Python", "PostgreSQL", "Redis", "Celery", "vLLM", "Next.js", "React", "TypeScript", "Astro", "Docker"]
     },
     {
       "id": 2,
       "role": "Cyber Security Analyst / Developer",
       "company": "Cecuri",
-      "period": "2024 — 2025",
+      "period": "2025 — Present",
       "description": [
-        "Built customer-facing dashboard serving 100K+ daily users",
-        "Implemented CI/CD pipeline cutting deployment time by 60%",
-        "Designed GraphQL API layer for unified data access"
+        "Built the Cerberus AI platform — an intelligent cyber security assistant for automated threat analysis and reporting",
+        "Conducted threat research, vulnerability assessments, and security monitoring as part of the analyst role",
+        "Developed full-stack application with FastAPI backend, LangChain/LangGraph AI pipelines, and React frontend"
       ],
-      "tech": ["TypeScript", "React", "Node.js", "GraphQL"]
+      "tech": ["FastAPI", "Python", "PostgreSQL", "LangChain", "LangGraph", "Ollama", "React", "Vite", "JavaScript", "Tailwind CSS", "Docker"]
     },
     {
       "id": 3,
       "role": "Instructor / System Developer",
       "company": "MFI Polytechnic Institute Inc.",
-      "period": "2020 — 2022",
+      "period": "2023 — 2025",
       "description": [
-        "Developed distributed storage engine with 99.99% uptime",
-        "Optimized query engine resulting in 3x throughput improvement",
-        "Built internal tooling used by 200+ developers"
+        "Performed system upgrades, maintenance, and IT infrastructure support",
+        "Managed and maintained internal applications and databases",
+        "Provided technical instruction and mentorship to students"
       ],
-      "tech": ["Rust", "Python", "Redis", "AWS"]
+      "tech": ["Python", "JavaScript", "PostgreSQL", "Linux"]
     },
     {
       "id": 4,
       "role": "MIS Analyst / IT Specialist",
       "company": "LA Global Product Trends Inc.",
-      "period": "2019 — 2020",
+      "period": "2019 — 2023",
       "description": [
-        "Contributed to open-source ML framework with 5K+ stars",
-        "Built data preprocessing pipeline for NLP research team",
-        "Published internal paper on efficient transformer inference"
+        "Built a Warehouse Management System for multi-warehouse inventory tracking and supply chain management",
+        "Developed mobile barcode scanning and POS modules using React Native and Expo",
+        "Engineered backend APIs with Django REST Framework, Celery task queues, and Redis caching"
       ],
-      "tech": ["Python", "PyTorch", "Docker", "Linux"]
+      "tech": ["Django REST Framework", "PostgreSQL", "Redis", "Celery", "Next.js", "React", "TypeScript", "Expo", "React Native", "Docker"]
     }
   ],
 
   "techStack": [
-    { "name": "TypeScript", "icon": "TS", "category": "language" },
     { "name": "Python", "icon": "PY", "category": "language" },
-    { "name": "Django", "icon": "Django", "category": "framework" },
-    { "name": "Django Rest Framework", "icon": "DRF", "category": "framework" },
+    { "name": "TypeScript", "icon": "TS", "category": "language" },
+    { "name": "JavaScript", "icon": "JS", "category": "language" },
+    { "name": "Django", "icon": "DJ", "category": "framework" },
+    { "name": "Django REST Framework", "icon": "DRF", "category": "framework" },
     { "name": "Flask", "icon": "FL", "category": "framework" },
+    { "name": "FastAPI", "icon": "FA", "category": "framework" },
     { "name": "React", "icon": "RE", "category": "framework" },
     { "name": "Next.js", "icon": "NX", "category": "framework" },
-    { "name": "Node.js", "icon": "ND", "category": "framework" },
-    { "name": "FastAPI", "icon": "FA", "category": "framework" },
-    { "name": "Docker", "icon": "DK", "category": "tool" },
-    { "name": "Git", "icon": "GT", "category": "tool" },
+    { "name": "React Native", "icon": "RN", "category": "framework" },
+    { "name": "Expo", "icon": "EX", "category": "framework" },
+    { "name": "Astro", "icon": "AS", "category": "framework" },
+    { "name": "Tailwind CSS", "icon": "TW", "category": "framework" },
     { "name": "PostgreSQL", "icon": "PG", "category": "tool" },
-    { "name": "Redis", "icon": "RD", "category": "tool" },   
-    { "name": "LangChain", "icon": "LC", "category": "tool" },
-    { "name": "LangGraph", "icon": "LG", "category": "tool" },
-    { "name": "vLLM", "icon": "vLLM", "category": "tool" },
-    { "name": "Ollama", "icon": "OLLAMA", "category": "tool" }
-  
+    { "name": "Redis", "icon": "RD", "category": "tool" },
+    { "name": "Celery", "icon": "CL", "category": "tool" },
+    { "name": "Docker", "icon": "DK", "category": "tool" },
+    { "name": "Nginx", "icon": "NX", "category": "tool" },
+    { "name": "Git", "icon": "GT", "category": "tool" },
+    { "name": "LangChain", "icon": "LC", "category": "ai" },
+    { "name": "LangGraph", "icon": "LG", "category": "ai" },
+    { "name": "vLLM", "icon": "vL", "category": "ai" },
+    { "name": "Ollama", "icon": "OL", "category": "ai" }
   ],
   "socials": [
     { "label": "GitHub", "url": "https://github.com/kupzsensei" },
