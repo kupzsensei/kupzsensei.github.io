@@ -1,11 +1,11 @@
 import { NavLink } from '@/types';
 
 export const NAV_LINKS: NavLink[] = [
-  { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Tech', href: '#tech' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', href: '/#about' },
+  { label: 'Projects', href: '/#projects' },
+  { label: 'Experience', href: '/#experience' },
+  { label: 'Tech', href: '/#tech' },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 export const COLORS = {

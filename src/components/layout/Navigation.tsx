@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NAV_LINKS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
@@ -12,23 +13,23 @@ export default function Navigation() {
     <nav className="fixed top-0 left-0 right-0 z-40 border-b border-cyan/10 bg-base/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo */}
-        <a
+        <Link
           href="/"
           className="font-display text-sm font-bold tracking-widest text-cyan glow-cyan"
         >
           &lt;PORTFOLIO /&gt;
-        </a>
+        </Link>
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="font-mono text-xs tracking-wider text-muted transition-colors hover:text-cyan uppercase"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -72,14 +73,14 @@ export default function Navigation() {
           >
             <div className="flex flex-col gap-4 px-6 py-6">
               {NAV_LINKS.map((link) => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
                   className="font-mono text-sm tracking-wider text-muted transition-colors hover:text-cyan uppercase"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
           </motion.div>

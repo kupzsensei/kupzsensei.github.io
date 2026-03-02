@@ -9,13 +9,38 @@ import siteData from '@/data/site.json';
 export default function Contact() {
   const { ref, inView } = useInView(0.2);
   const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-    setForm({ name: '', email: '', message: '' });
+    setStatus('sending');
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setStatus('success');
+        setForm({ name: '', email: '', message: '' });
+        setTimeout(() => setStatus('idle'), 3000);
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 3000);
+      }
+    } catch {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 3000);
+    }
   };
 
   return (
@@ -76,8 +101,14 @@ export default function Contact() {
               />
             </div>
 
-            <NeonButton type="submit" variant="cyan">
-              {submitted ? '[ TRANSMITTED ]' : '[ TRANSMIT ]'}
+            <NeonButton type="submit" variant="cyan" disabled={status === 'sending'}>
+              {status === 'sending'
+                ? '[ TRANSMITTING... ]'
+                : status === 'success'
+                  ? '[ TRANSMITTED ]'
+                  : status === 'error'
+                    ? '[ TRANSMISSION FAILED ]'
+                    : '[ TRANSMIT ]'}
             </NeonButton>
           </form>
 
