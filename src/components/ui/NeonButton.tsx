@@ -10,6 +10,7 @@ interface NeonButtonProps {
   variant?: 'cyan' | 'magenta';
   className?: string;
   href?: string;
+  disabled?: boolean;
 }
 
 export default function NeonButton({
@@ -19,6 +20,7 @@ export default function NeonButton({
   variant = 'cyan',
   className,
   href,
+  disabled,
 }: NeonButtonProps) {
   const colors = {
     cyan: 'border-cyan text-cyan hover:bg-cyan/10 hover:shadow-[0_0_20px_#00FFFF40]',
@@ -36,9 +38,11 @@ export default function NeonButton({
         href={href}
         onClick={onClick}
         type={href ? undefined : type}
+        disabled={!href ? disabled : undefined}
         className={cn(
           'inline-block border px-6 py-3 font-mono text-xs tracking-widest uppercase transition-all duration-300',
           colors[variant],
+          disabled && 'opacity-50 pointer-events-none',
           className
         )}
       >
