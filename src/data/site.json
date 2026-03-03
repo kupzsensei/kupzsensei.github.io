@@ -224,7 +224,7 @@
   "experience": [
     {
       "id": 1,
-      "role": "Senior Software Engineer",
+      "role": "Software Engineer",
       "company": "PrimeDesk Solutions",
       "period": "2025 — Present",
       "description": [
@@ -238,7 +238,7 @@
       "id": 2,
       "role": "Cyber Security Analyst / Developer",
       "company": "Cecuri",
-      "period": "2025 — Present",
+      "period": "2024 — 2025",
       "description": [
         "Built the Cerberus AI platform — an intelligent cyber security assistant for automated threat analysis and reporting",
         "Conducted threat research, vulnerability assessments, and security monitoring as part of the analyst role",
@@ -250,7 +250,7 @@
       "id": 3,
       "role": "Instructor / System Developer",
       "company": "MFI Polytechnic Institute Inc.",
-      "period": "2023 — 2025",
+      "period": "2023 — 2024",
       "description": [
         "Performed system upgrades, maintenance, and IT infrastructure support",
         "Managed and maintained internal applications and databases",
