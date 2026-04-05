@@ -19,6 +19,55 @@
 
   "projects": [
     {
+  "id": null,
+  "title": "P3 Lite",
+  "description": "Fully automated SEO content publishing pipeline that generates ~1,200-word blog articles via AI (Claude or GPT), runs two-pass quality assurance with keyword density and banned-phrase enforcement, and publishes directly to client WordPress sites via REST API — replacing a 90-minute manual workflow with a 2-minute, $0.05-per-article automated process managed through a real-time web dashboard.",
+  "longDescription": [
+    "Built a production-hardened content automation pipeline that takes article requests from queue to publish end-to-end. The two-pass AI architecture uses a creative generation pass (temperature 0.7) that produces full HTML articles with SEO titles, meta descriptions, URL slugs, FAQ schema, comparison tables, and how-to sections, followed by a precision QA pass (temperature 0.3) that enforces an 11-point checklist covering word count (1,100–1,300), keyword placement density, location mention frequency (8–12), banned AI-cliche phrases (28 blocked), and structured data completeness. The provider abstraction layer makes Claude Sonnet 4 and GPT-4o fully interchangeable with identical prompt pipelines and zero code changes.",
+    "The pipeline publishes to WordPress via REST API with full SEO metadata injection — RankMath and Yoast fields, Article + FAQPage JSON-LD schema markup, automatic category/tag resolution with auto-creation, and public URL rewriting for Docker-internal domains. Post-publish hooks request Google Search Console indexing, back up article HTML to date-partitioned directories, and enforce configurable daily spend caps with per-article token-level cost accounting. The atomic queue claim system uses OS-level file locking (flock) to prevent race conditions across the dual PM2 processes (API server + pipeline worker), with exponential backoff retry (up to 3 attempts) and Slack/Discord webhook alerting on failures.",
+    "The single-file HTML dashboard (no build step) provides multi-tab monitoring: article queue with status badges and pagination, published article history with cost tracking, failure alerts with one-click retry, searchable archive, and per-client management cards with connection testing. Security hardening includes session-based authentication with constant-time comparison, CSRF origin validation, Helmet security headers, rate limiting (10 login attempts/15min, 60 API calls/min), credential stripping from all API responses, HTTPS-enforced domain validation with SSRF protection, and a health endpoint exposing corruption detection, stuck-article monitoring, and provider configuration status. Deployment is a single docker-compose.yml with optional Nginx reverse proxy and Let's Encrypt SSL automation."
+  ],
+  "tech": [
+    "Node.js 20",
+    "Express.js 4",
+    "PM2",
+    "Anthropic Claude SDK",
+    "OpenAI SDK (GPT-4o)",
+    "WordPress REST API",
+    "Google Search Console API",
+    "Docker",
+    "Docker Compose",
+    "Nginx",
+    "Let's Encrypt (Certbot)",
+    "MariaDB 11",
+    "Helmet",
+    "express-rate-limit",
+    "express-session",
+    "Multer",
+    "csv-parse",
+    "UUID"
+  ],
+  "features": [
+    "Two-pass AI generation pipeline: creative content pass (0.7 temp) → precision QA pass (0.3 temp) with 11-point checklist enforcement",
+    "Provider-agnostic AI abstraction: seamlessly swap between Claude Sonnet 4 and GPT-4o with identical prompt pipelines and zero code changes",
+    "Full WordPress publishing with RankMath/Yoast SEO fields, Article + FAQPage JSON-LD schema, auto category/tag creation, and public URL rewriting",
+    "Real-time single-file HTML dashboard with queue monitoring, published article history, failure alerts, searchable archive, and client management",
+    "Multi-client management with per-client brand voice, WordPress credentials, categories, authors, and connection testing",
+    "Token-level cost accounting with configurable daily spend caps, per-article cost tracking, and automatic budget enforcement",
+    "Atomic queue operations with OS-level file locking (flock), race condition prevention, and publish-state protection",
+    "Article scheduling with configurable delays (1h–48h), duplicate title+client prevention, and CSV batch upload",
+    "Exponential backoff retry with jitter (max 3 attempts), Retry-After header respect, and manual retry from dashboard",
+    "Google Search Console indexing integration with lazy initialization and non-fatal failure handling",
+    "Failure alerting via Slack/Discord webhooks with per-article deduplication and markdown-formatted payloads",
+    "Security hardening: session auth with constant-time comparison, CSRF origin validation, Helmet headers, rate limiting, credential stripping, SSRF protection",
+    "Health monitoring endpoint with corruption detection, stuck-article tracking, provider status, and HTTP 503 for degraded state",
+    "JSON data integrity with automatic .bak snapshot creation and corruption auto-recovery from backups",
+    "Single docker-compose.yml deployment with optional Nginx reverse proxy and Let's Encrypt SSL automation"
+  ],
+  "role": "Solo Developer (Personal Project)",
+  "year": "2026"
+},
+    {
       "id": 4,
       "title": "ShortsEngine",
       "description": "AI-powered YouTube Shorts automation platform that generates and uploads vertical video content at scale — combining multi-GPU inference (Ollama LLM, Stable Diffusion, Coqui TTS), trending topic discovery, video clipping automation with Whisper transcription and LLM highlight detection, and YouTube API integration for scheduled publishing and analytics.",
