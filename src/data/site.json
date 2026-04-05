@@ -19,6 +19,85 @@
 
   "projects": [
     {
+    "id": 10,
+    "title": "Arcanova",
+    "description": "Self-hosted, team collaboration and project management platform featuring an AES-256-GCM encrypted secrets vault, lightweight feature planning with drag-and-drop Kanban boards, issue
+  tracking with multiple views (Kanban/list/calendar), Tiptap rich text documentation, Stripe/PayMongo (GCash) subscription billing, OAuth authentication (GitHub/Google) via Auth.js v5 with JWT sessions,
+  threaded comments with @mentions, PostgreSQL trigram fuzzy search, comprehensive audit logging, and an admin dashboard — all built as a full-stack Next.js 15 App Router application with Prisma ORM and
+  Dockerized deployment with MinIO S3-compatible object storage.",
+    "longDescription": [
+      "Built a production-ready team collaboration platform centered around secure project management — projects support multi-role access (Owner/Editor/Viewer) with magic-link invitations, and each project
+  contains features, issues, tasks, notes, and an encrypted secrets vault. The secrets vault uses AES-256-GCM encryption with PBKDF2 key derivation (100k iterations, SHA-512), per-secret random IVs, and
+  supports environment scoping (Dev/Staging/Prod/All) with granular access levels (Team/Personal/Specific). Secrets are click-to-reveal with 10-second auto-hide, rate-limited to 30 reveals per minute, and
+  support bulk .env import/export. Secret values are never logged anywhere in the system. The feature planning system follows a 5-status workflow (Idea → Planned → In Progress → Shipped → Dropped) with
+  drag-and-drop Kanban boards using @dnd-kit and fractional indexing for stable ordering, while issues support Kanban, list, and calendar views with inline editing and many-to-many assignees.",
+      "The subscription system supports two tiers — Initiate (Free: 3 projects, 10 features, 20 secrets, 15 notes, 2 collaborators per project) and Archmage (Pro: unlimited everything + roadmap view +
+  unlimited activity retention) — with Stripe integration for global card payments and PayMongo for GCash/QR targeting Philippine users. Webhook processing uses signature verification and idempotent event
+  tracking via a WebhookEvent model. The collaboration layer includes threaded comments with @mention autocomplete and notification generation, in-app notifications for invites, role changes, and mentions,
+  plus a comprehensive activity audit log tracking every mutation with before/after diffs. Full-text search leverages PostgreSQL pg_trgm trigram similarity across projects, features, issues, notes, and secret
+  keys via a Cmd+K command palette with fuzzy matching and RBAC-scoped results.",
+      "Authentication uses Auth.js (NextAuth) v5 in JWT mode with GitHub and Google OAuth providers, 30-day session maxAge with 24-hour sliding window refresh, and no passwords stored. The Next.js 15 frontend
+  features a dark arcane aesthetic with angular chamfered corners, mouse-tracking glow borders, and a constellation particle background. The UI includes a Tiptap rich text editor for documentation with code
+  blocks, tables, and task lists, Recharts analytics, TanStack React Table for data display, react-day-picker for calendar views, and cmdk for the command palette. The admin dashboard provides user management
+  with tier upgrades/downgrades, admin promotion, GDPR-style deletion, support ticket responses, and bug bounty tracking with severity levels. The Dockerized deployment stack (PostgreSQL, MinIO, Next.js app,
+  plus optional migration service and MinIO init) includes health checks, persistent volumes, and is designed for deployment behind an external Nginx reverse proxy with SSL termination."
+    ],
+    "tech": [
+      "Next.js 15",
+      "React 19",
+      "TypeScript 5",
+      "Tailwind CSS 4",
+      "Prisma 6",
+      "Auth.js (NextAuth) v5",
+      "Zod 4",
+      "TanStack React Table 8",
+      "Tiptap 3",
+      "Recharts 3",
+      "@dnd-kit 6",
+      "cmdk 1",
+      "React Day Picker 9",
+      "Lowlight 3",
+      "React Markdown 10",
+      "Sonner 2",
+      "Pino 10",
+      "Jose 6",
+      "Nodemailer 8",
+      "Stripe 21",
+      "PayMongo API",
+      "AWS SDK v3 (S3)",
+      "Mammoth 1",
+      "PostgreSQL 16",
+      "MinIO (S3-compatible)",
+      "Vitest 4",
+      "Docker",
+      "Docker Compose"
+    ],
+    "features": [
+      "AES-256-GCM encrypted secrets vault with PBKDF2 key derivation (100k iterations, SHA-512), per-secret random IVs, environment scoping (Dev/Staging/Prod/All), granular access levels
+  (Team/Personal/Specific), click-to-reveal with 10s auto-hide, rate-limited reveals, and bulk .env import/export",
+      "Multi-role project collaboration with Owner/Editor/Viewer RBAC enforced on every API route, magic-link email invitations with 7-day expiry, ownership transfer, and configurable editor secret access",
+      "5-status feature planning (Idea → Planned → In Progress → Shipped → Dropped) with drag-and-drop Kanban boards using @dnd-kit and fractional indexing, plus auto-progress when linked issues complete",
+      "Issue tracking with Kanban, list, and calendar views, inline editing, many-to-many assignees, 5-status workflow (Backlog → Todo → In Progress → In Review → Done), and priority levels",
+      "Task system nested under features with progress tracking, assignees, due dates, and 4-status workflow (Todo → In Progress → Review → Done)",
+      "Tiptap rich text documentation editor with code blocks, tables, task lists, image support, markdown rendering, note categories (General/Documentation/Meeting/Idea/Troubleshooting), pinning, and S3 file
+  attachments with presigned URLs (10MB limit)",
+      "Two-tier subscription billing — Initiate (Free) with enforced limits and Archmage (Pro) with unlimited resources — via Stripe for global payments and PayMongo for GCash/QR targeting Philippine users,
+  with webhook signature verification and idempotent event tracking",
+      "OAuth-only authentication via Auth.js v5 with GitHub and Google providers, JWT sessions with 30-day maxAge, 24-hour sliding window refresh, and automatic user creation on first sign-in",
+      "Threaded comment system with @mention autocomplete, styled mention highlights, and automatic notification generation for mentioned users on issues and tasks",
+      "Full-text search via PostgreSQL pg_trgm trigram similarity across projects, features, issues, notes, and secret keys through a Cmd+K command palette with RBAC-scoped results",
+      "Comprehensive activity audit log tracking every mutation with before/after diffs, secret value redaction, IP logging, cursor-based pagination, and tier-based retention (30 days free, unlimited pro)",
+      "Admin dashboard with user management (tier upgrades/downgrades, admin promotion, GDPR-style deletion), support ticket system with responses, and bug bounty program with severity tracking and
+  subscription card rewards",
+      "Dark arcane-themed responsive UI with angular chamfered corners, mouse-tracking glow borders, constellation particle background, collapsible sidebar, Recharts analytics, paginated data tables, and
+  custom fonts (Cinzel, Crimson Text, JetBrains Mono)",
+      "Dockerized deployment (PostgreSQL, MinIO, Next.js app, migration service, MinIO init) with health checks, persistent volumes, multi-stage Dockerfile, and external Nginx reverse proxy with SSL
+  termination"
+    ],
+    "role": "Solo Developer (Personal Project)",
+    "year": "2026"
+  },
+    {
     "id": 9,
     "title": "StreamFree",
     "description": "Self-hosted, open-access video streaming platform targeting Philippine audiences featuring adaptive bitrate HLS streaming with FFmpeg transcoding (360p–1080p), donation-based monetization
