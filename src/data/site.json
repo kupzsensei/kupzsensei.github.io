@@ -19,7 +19,7 @@
 
   "projects": [
     {
-  "id": null,
+  "id": 5,
   "title": "P3 Lite",
   "description": "Fully automated SEO content publishing pipeline that generates ~1,200-word blog articles via AI (Claude or GPT), runs two-pass quality assurance with keyword density and banned-phrase enforcement, and publishes directly to client WordPress sites via REST API — replacing a 90-minute manual workflow with a 2-minute, $0.05-per-article automated process managed through a real-time web dashboard.",
   "longDescription": [
