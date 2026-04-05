@@ -19,6 +19,254 @@
 
   "projects": [
     {
+    "id": 9,
+    "title": "StreamFree",
+    "description": "Self-hosted, open-access video streaming platform targeting Philippine audiences featuring adaptive bitrate HLS streaming with FFmpeg transcoding (360p–1080p), donation-based monetization
+  via Stripe/PayPal/PayMongo (GCash), JWT authentication with Google OAuth, threaded comments with admin moderation, trending algorithm and featured carousel, watch history with resume playback, full-text
+  search with PostgreSQL trigram similarity, and a comprehensive admin analytics dashboard — all managed through a responsive Next.js frontend with Zustand state management and Dockerized deployment with
+  SeaweedFS S3-compatible object storage.",
+    "longDescription": [
+      "Built a production self-hosted video streaming platform designed for open access — anyone can browse and watch public videos without an account, while registered users gain enhanced features like
+  watchlists, personalized watch history with resume playback, threaded comments, reactions, and donation support. The admin-curated content model means only administrators upload videos, which are
+  automatically transcoded via FFmpeg Celery workers into multi-quality HLS streams (360p/480p/720p/1080p) with adaptive bitrate switching. Raw uploads support files up to 10GB via presigned SeaweedFS URLs,
+  and the transcoding pipeline follows a pending_upload → processing → ready lifecycle with automatic thumbnail generation. The HLS.js-based video player provides full controls including seek, volume,
+  fullscreen, picture-in-picture, playback speed (0.5x–2x), manual quality selection, and keyboard shortcuts, with 30-day immutable segment caching and 5-minute playlist caching.",
+      "The donation system supports three payment providers — Stripe for global card payments, PayPal for international accessibility, and PayMongo for GCash integration targeting Philippine users — with dual
+  currency support (PHP and USD), minimum amounts (₱50.00 PHP / $1.00 USD), webhook-verified processing with idempotent event tracking via ProcessedWebhookEvent, and immutable completed donation records. The
+  engagement layer includes like/dislike reactions (one per user per video), threaded comments with nested replies and admin approval workflow, view count tracking with Redis-based rate limiting (one count per
+   IP per video per 24 hours), and a trending algorithm that weighs views and likes against recency using the formula (view_count×1.0 + like_count×2.0) / (hours_since+2)^1.5. Full-text search leverages
+  PostgreSQL trigram similarity across titles, descriptions, and tags with auto-suggest debounced dropdown and filtering by category, upload date, duration, and popularity.",
+      "Authentication uses django-allauth in headless JWT mode with email/password registration, email verification, Google OAuth, password reset, 15-minute access tokens with 7-day refresh token rotation
+  stored in HTTP-only cookies, and Argon2 password hashing. The Next.js 15 frontend features a responsive Tailwind CSS design with featured carousel (cross-fade animations), trending grid, category browsing,
+  collapsible sidebar navigation, dynamic form line items with real-time calculations, paginated data tables with status badges, and browser print-to-PDF reporting. The admin dashboard provides analytics with
+  Recharts (LineChart/BarChart), video management with upload monitoring, user management with ban/delete (GDPR-style removal), comment moderation queue with bulk actions, and donation reports with CSV/Excel
+  export. The eight-service Docker Compose stack (PostgreSQL, Redis, SeaweedFS, SeaweedFS-init, Django/Gunicorn, Celery Worker, Celery Beat, Next.js) includes health checks, resource limits (Celery worker: 2
+  CPU/4GB), persistent volumes, and is designed for deployment behind an external Nginx reverse proxy with SSL termination."
+    ],
+    "tech": [
+      "Next.js 15",
+      "React 19",
+      "TypeScript 5",
+      "Tailwind CSS 4",
+      "Zustand 5",
+      "TanStack React Query 5",
+      "React Hook Form 7",
+      "Zod 4",
+      "Recharts 3",
+      "HLS.js 1.6",
+      "Axios 1",
+      "Django 5.2",
+      "Django REST Framework 3.16",
+      "django-allauth 65",
+      "drf-spectacular 0.28",
+      "Celery 5.6",
+      "django-celery-beat 2.9",
+      "django-storages 1.14",
+      "django-redis 5.4",
+      "django-cors-headers 4.6",
+      "django-autoslug 1.9",
+      "argon2-cffi 23",
+      "PostgreSQL 16",
+      "Redis 7",
+      "SeaweedFS",
+      "FFmpeg",
+      "Gunicorn 23",
+      "Docker",
+      "Docker Compose",
+      "Nginx"
+    ],
+    "features": [
+      "Open-access video browsing — anyone can watch public content without registration; logged-in users unlock watchlists, history, comments, reactions, and donations",
+      "Admin-curated video uploads via presigned SeaweedFS URLs (up to 10GB) with automatic FFmpeg transcoding into multi-quality HLS streams (360p/480p/720p/1080p) and adaptive bitrate switching",
+      "HLS.js video player with full controls: seek, volume, fullscreen, picture-in-picture, playback speed (0.5x–2x), manual quality selection, keyboard shortcuts, and resume-from-last-position playback",
+      "Donation-based monetization via Stripe, PayPal, and PayMongo (GCash) with dual currency support (PHP/USD), webhook-verified processing, idempotent event tracking, and immutable completed donation
+  records",
+      "JWT authentication via django-allauth headless mode with email/password registration, Google OAuth, email verification, password reset, 15-minute access tokens, refresh token rotation in HTTP-only
+  cookies, and Argon2 hashing",
+      "Threaded comment system with nested replies, admin approval workflow, bulk moderation actions, and configurable auto-approval",
+      "Like/dislike reaction system (one per user per video) and view count tracking with Redis-based IP rate limiting (one count per IP per video per 24 hours)",
+      "Trending algorithm computing (view_count×1.0 + like_count×2.0) / (hours_since+2)^1.5 with admin-curated featured carousel using cross-fade animations",
+      "Full-text search via PostgreSQL trigram similarity across titles, descriptions, and tags with auto-suggest dropdown, and filtering by category, upload date, duration, and popularity",
+      "Watch history with automatic position tracking for resume playback, personal watchlist management, and per-user deduplication",
+      "Admin analytics dashboard with Recharts visualizations (LineChart/BarChart), video upload/status management, user management with ban/delete (GDPR-style), comment moderation queue, and donation reports
+  with CSV/Excel export",
+      "Private video support with auth-gated access enforced at both API and frontend levels, plus video visibility controls (public/private) and featured curation toggles",
+      "Responsive Next.js 15 frontend with Tailwind CSS, Zustand state management, TanStack React Query data fetching, collapsible sidebar navigation, paginated data tables with status badges, and browser
+  print-to-PDF reporting",
+      "Eight-service Docker Compose deployment (PostgreSQL, Redis, SeaweedFS, SeaweedFS-init, Django/Gunicorn, Celery Worker, Celery Beat, Next.js) with health checks, resource limits, persistent volumes, and
+  external Nginx reverse proxy with SSL termination"
+    ],
+    "role": "Solo Developer",
+    "year": "2026"
+  },
+     {
+    "id": 8,
+    "title": "AI-Powered Penetration Testing Platform",
+    "description": "Full-stack AI-enhanced penetration testing reconnaissance platform that automates security scanning through containerized Kali Linux environments, chains 10+ offensive security tools via
+  intelligent AI orchestration (Ollama LLM), enriches findings with severity assessment and remediation guidance, correlates discoveries across scan modules, and delivers real-time monitoring through a
+  WebSocket-powered Next.js dashboard with multi-format report generation.",
+    "longDescription": [
+      "Built a production AI-powered reconnaissance platform that automates penetration testing workflows end-to-end. The system runs three scan modules — Recon (subfinder, httpx, dig, whois, waybackurls),
+  Port Scan (naabu, nmap), and Web Scan (nuclei, nikto, ffuf) — inside ephemeral Kali Linux Docker containers with strict resource limits (512 MB memory, 50% CPU cap) and network isolation. An AI orchestration
+   engine powered by Ollama dynamically chains modules based on discovered findings: recon runs first, then the LLM evaluates preconditions (live hosts required for port scans, open ports or live hosts for web
+   scans) and emits structured JSON decisions (run/skip/done) with reasoning, up to a configurable max depth of 5 iterations. Each decision is persisted as an OrchestratorDecision audit record and streamed to
+  the frontend via WebSocket.",
+      "The analytics and enrichment layer processes every finding through Ollama-powered structured output: assigning severity (critical/high/medium/low/info), applying classification tags (admin-panel,
+  api-endpoint, dev-environment), generating per-finding remediation steps, and producing scan-level summaries with top critical findings and prioritized recommendations. Cross-module host correlation groups
+  findings by normalized hostname across recon, port, and web scans via a HostCorrelation model with M2M junction tables. Rule-based deduplication identifies hosts confirmed by multiple tools and marks
+  findings with dedup_group_id and confirmed_by_tools metadata. Incremental diff computation against previous scans flags new/unchanged/modified findings. Project-level executive summaries aggregate risk
+  posture across all completed scans.",
+      "The Next.js 15 frontend (React 19, TypeScript, Tailwind CSS 4, shadcn/ui) provides a real-time dark-themed dashboard with a ScanPipeline timeline showing live tool execution status, heartbeat elapsed
+  times, and expandable error details. State management combines Zustand stores with TanStack Query for server-state caching and optimistic updates. The backend is FastAPI 0.135 (Python 3.12) with SQLAlchemy
+  2.0 async ORM on PostgreSQL 16, Celery 5.6 task queue with Redis 7 broker, and Alembic migrations. Report generation supports HTML, Markdown, and PDF (WeasyPrint) via Jinja2 templates with branded cover
+  pages, severity-grouped findings, and AI-generated recommendations. Deployment is a six-service Docker Compose stack (backend, worker, beat, frontend, PostgreSQL, Redis) with two isolated networks
+  (internal-net for services, scan-net for Kali containers), persistent volumes, health checks, and an optional Flower monitoring dashboard."
+    ],
+    "tech": [
+      "Next.js 15",
+      "React 19",
+      "TypeScript 5",
+      "Tailwind CSS 4",
+      "Radix UI / Shadcn",
+      "Zustand 5",
+      "TanStack Query 5",
+      "TanStack Table 8",
+      "Recharts",
+      "Lucide React",
+      "date-fns 4",
+      "Python 3.12",
+      "FastAPI 0.135",
+      "SQLAlchemy 2.0 (async)",
+      "Alembic 1.18",
+      "Pydantic 2.12",
+      "Celery 5.6",
+      "PostgreSQL 16",
+      "asyncpg 0.31",
+      "Redis 7",
+      "Ollama SDK 0.6",
+      "Docker SDK 7.1 (Python)",
+      "Jinja2",
+      "WeasyPrint",
+      "httpx 0.28",
+      "pytest 8.3",
+      "ruff",
+      "Kali Linux (rolling)",
+      "subfinder v2.12.0",
+      "httpx-tool v1.9.0",
+      "naabu v2.3.1",
+      "nuclei v3.3.9",
+      "nmap",
+      "nikto",
+      "ffuf v2.1.0",
+      "waybackurls",
+      "Docker",
+      "Docker Compose"
+    ],
+    "features": [
+      "AI orchestration engine that dynamically chains scan modules (recon → port → web) based on LLM-evaluated preconditions, structured JSON decisions (run/skip/done), and configurable max depth — with full
+  audit trail of reasoning",
+      "Ephemeral Kali Linux container execution for 10+ security tools (subfinder, httpx, dig, whois, waybackurls, naabu, nmap, nuclei, nikto, ffuf) with strict resource isolation (512 MB memory, 50% CPU,
+  isolated scan-net network)",
+      "Recon module with sequential subdomain enumeration followed by parallel chord execution (HTTP probing, DNS lookup, WHOIS, Wayback Machine) using Celery task chains and chords",
+      "Port scan module chaining fast port discovery (naabu, top 1000 ports) into service/version detection (nmap) with automatic target extraction from recon findings",
+      "Web scan module running vulnerability scanning (nuclei YAML templates), web server misconfiguration detection (nikto), and directory fuzzing (ffuf with SecLists wordlists)",
+      "Per-finding AI enrichment via Ollama LLM: structured severity assessment (critical–info), classification tags, remediation guidance, and confidence scoring with validation checks",
+      "Scan-level and project-level AI-generated executive summaries with risk assessment, top critical findings, and prioritized recommendations",
+      "Cross-module host correlation grouping findings by normalized hostname across recon, port, and web scans via HostCorrelation model with M2M junction tables",
+      "Rule-based finding deduplication identifying hosts confirmed by multiple tools, marking dedup_group_id and confirmed_by_tools metadata",
+      "Incremental scan diffing that flags new, unchanged, and modified findings versus the previous scan run",
+      "Real-time WebSocket event streaming (step updates, scan status, heartbeats, orchestrator decisions) via Redis pub/sub with auto-reconnect and exponential backoff",
+      "Interactive ScanPipeline UI with live tool execution timeline, status icons, elapsed time heartbeats, expandable error details, and per-step retry/cancel controls",
+      "Multi-format report generation (HTML, Markdown, PDF via WeasyPrint) with Jinja2 templates, branded cover pages, severity-grouped findings, and AI recommendations",
+      "Scan lifecycle management: queue, run, cancel (entire scan or individual steps), retry failed/partial scans without re-running completed steps",
+      "Cron-based recurring scan scheduling via Celery Beat with configurable per-project intervals and duplicate job prevention",
+      "Six-service Docker Compose deployment (FastAPI backend, Celery worker, Celery Beat, Next.js frontend, PostgreSQL, Redis) with two isolated networks, persistent volumes, health checks, and optional
+  Flower monitoring"
+    ],
+    "role": "Solo Developer",
+    "year": "2026"
+  },
+    {
+   "id": 7,
+   "title": "Accounting System",
+   "description": "Full-stack BIR-compliant multi-company accounting platform for Philippine businesses featuring double-entry bookkeeping with immutable audit trails, automated statutory tax computations
+ (VAT, EWT, TRAIN Law), complete payroll processing with SSS/PhilHealth/Pag-IBIG deductions, FIFO/Weighted Average inventory management, bank reconciliation with CSV import and auto-matching, BIR e-filing
+ form generation (2550M, 2550Q, 1601-E, 1601-C), and comprehensive financial reporting — all managed through a responsive Next.js dashboard with multi-tenant company switching, role-based access control, and
+ Dockerized deployment behind Nginx reverse proxy.",
+   "longDescription": [
+     "Built a production multi-company accounting platform fully compliant with Philippine BIR (Bureau of Internal Revenue) and PFRS/PAS standards. The shared-database multi-tenancy architecture isolates
+ company data via a CompanyScopedManager that automatically filters all querysets by the active company, injected through middleware from X-Company-ID headers. The double-entry bookkeeping engine enforces
+ balanced journal entries (SUM(debits) == SUM(credits)) with NUMERIC(18,4) precision for tax and foreign exchange calculations, supports a Draft → Posted → Voided lifecycle with immutable posted entries, and
+ links sub-ledger documents (invoices, bills, payroll, inventory) back to the general ledger via generic foreign keys for full drill-down capability. A hierarchical Chart of Accounts supports parent-child
+ relationships with header/detail classification, and fiscal periods can be opened, closed, or locked to prevent unauthorized postings.",
+     "The tax compliance layer automates VAT (12%) computation on sales invoices and purchase bills, calculates Expanded Withholding Tax (EWT) based on vendor-configured ATC (Alphanumeric Tax Code) rates,
+ generates BIR forms (2550M monthly VAT, 2550Q quarterly VAT, 1601-E monthly EWT, 1601-C monthly compensation, 1604C/1604E annual alphalists), produces Summary Lists of Sales and Purchases (SLSP) with CSV
+ export in BIR-prescribed format, and tracks CAS (Computerized Accounting System) compliance through immutable audit logs. The payroll module processes batch payroll runs with automatic statutory deduction
+ calculations — SSS contributions from database-driven bracket tables, PhilHealth premium sharing with floor/ceiling caps, Pag-IBIG tiered contributions, and TRAIN Law graduated income tax with base tax and
+ marginal rates — plus government remittance tracking with period-based aggregation and journal entry posting.",
+     "The inventory module supports FIFO and Weighted Average costing methods with immutable stock movement records, a full Purchase Order workflow (Draft → Approved → Partially Received → Received → Closed)
+ with goods receiving and quantity tracking, stock adjustments for physical counts/damage/shrinkage with variance calculation, and inter-warehouse transfers. Bank reconciliation imports CSV statements with
+ hash-based deduplication, auto-matches register entries to statement lines by amount/date/description, supports manual matching and bank adjustment creation (service charges, interest income, NSF checks),
+ and calculates adjusted bank vs book balances. The Next.js 16 frontend uses a responsive Tailwind CSS design with a company-switching header, collapsible sidebar navigation, dynamic form line items with
+ real-time total calculations, data tables with pagination and filtering, status badges, and browser print-to-PDF reporting. Security includes JWT authentication with silent token refresh and mutex-locked
+ concurrent 401 handling, role-based access control (Admin, Accountant, Payroll Officer, Inventory Manager, Auditor) with per-module permissions (view/create/edit/post/void), encrypted model fields for
+ sensitive data, parameterized SQL queries, and a seven-service Docker Compose stack (Django/Gunicorn, Next.js, PostgreSQL, Redis, Nginx, Celery Worker, Celery Beat) with health checks, resource limits, and
+ Nginx reverse proxy with security headers."
+   ],
+   "tech": [
+     "Next.js 16",
+     "React 19",
+     "TypeScript 5",
+     "Tailwind CSS 4",
+     "Vitest",
+     "Playwright",
+     "Django 5.1",
+     "Django REST Framework 3.15",
+     "PostgreSQL 16",
+     "Redis 7",
+     "Celery 5.4",
+     "djangorestframework-simplejwt",
+     "django-auditlog",
+     "django-encrypted-model-fields",
+     "django-filter",
+     "django-cors-headers",
+     "WeasyPrint",
+     "openpyxl",
+     "Whitenoise",
+     "Gunicorn",
+     "Docker",
+     "Docker Compose",
+     "Nginx"
+   ],
+   "features": [
+     "Shared-database multi-tenancy with CompanyScopedManager auto-filtering all queries by active company, middleware-injected from X-Company-ID headers with per-user default fallback",
+     "Double-entry bookkeeping engine enforcing balanced journal entries (debits = credits) with NUMERIC(18,4) precision, Draft → Posted → Voided lifecycle, and generic FK drill-down from GL to sub-ledger
+ source documents",
+     "Hierarchical Chart of Accounts with parent-child relationships, header/detail classification, five account types (Asset, Liability, Equity, Revenue, Expense), and normal balance direction enforcement",
+     "Accounts Receivable: customer master with credit limits and payment terms, sales invoices with VAT auto-calculation, official receipts with multi-method payment, receipt-to-invoice application, and AR
+ aging analysis (current/30/60/90+ days)",
+     "Accounts Payable: vendor master with EWT rates, purchase bills with VAT and EWT auto-calculation, check voucher/disbursement processing, disbursement-to-bill application, and AP aging analysis",
+     "BIR tax compliance: automated VAT (12%) and EWT computation, BIR form generation (2550M, 2550Q, 1601-E, 1601-C, 1604C, 1604E), SLSP with CSV export in BIR-prescribed format, ATC code management, and CAS
+  compliance verification",
+     "Payroll processing with database-driven SSS bracket tables, PhilHealth premium sharing (floor/ceiling), Pag-IBIG tiered contributions, TRAIN Law graduated income tax, batch compute/finalize workflow,
+ and government remittance tracking",
+     "Inventory management with FIFO and Weighted Average costing, Purchase Order workflow (Draft → Approved → Partially Received → Received → Closed), goods receiving, stock adjustments
+ (count/damage/shrinkage/found), and inter-warehouse transfers",
+     "Bank reconciliation with CSV statement import (hash-based deduplication), auto-matching by amount/date/description, manual matching, bank adjustment creation, and adjusted balance calculation",
+     "Financial reporting: Trial Balance, Balance Sheet, Income Statement, Cash Flow Statement, General Ledger detail, AR/AP subsidiary ledgers, and report snapshot archival (JSON/PDF/Excel)",
+     "Fiscal period management with open/close/lock status enforcement preventing unauthorized postings to closed or locked periods",
+     "JWT authentication with silent token refresh, mutex-locked concurrent 401 handling, and role-based access control (Admin, Accountant, Payroll Officer, Inventory Manager, Auditor) with per-module
+ permissions (view/create/edit/post/void)",
+     "Responsive Next.js 16 frontend with company-switching header, collapsible sidebar, dynamic form line items with real-time calculations, paginated data tables with status badges, and browser print-to-PDF
+  reporting",
+     "Immutable audit trail via django-auditlog with CAS-compliant access logging (login/logout/failed attempts), encrypted sensitive fields, and parameterized SQL queries",
+     "Seven-service Docker Compose deployment (Django/Gunicorn, Next.js, PostgreSQL, Redis, Nginx, Celery Worker, Celery Beat) with health checks, resource limits, persistent volumes, and Nginx reverse proxy
+ with security headers"
+   ],
+   "role": "Solo Developer",
+   "year": "2026"
+ },
+    {
   "id": 6,
   "title": "SEO Ranking Intelligence",
   "description": "Full-stack multi-client SEO rank tracking platform that automates Google SERP monitoring across geographic locations via pluggable search providers (SerpAPI, DataForSEO, SearXNG), detects rank changes with historical trend analysis, discovers new keyword opportunities from related searches, identifies competitor domains and URL cannibalization, and delivers webhook-driven rank alerts — all managed through a real-time React dashboard with PDF/CSV reporting and a dark-themed analytics UI.",
