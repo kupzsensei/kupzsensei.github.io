@@ -19,6 +19,65 @@
 
   "projects": [
     {
+  "id": 6,
+  "title": "SEO Ranking Intelligence",
+  "description": "Full-stack multi-client SEO rank tracking platform that automates Google SERP monitoring across geographic locations via pluggable search providers (SerpAPI, DataForSEO, SearXNG), detects rank changes with historical trend analysis, discovers new keyword opportunities from related searches, identifies competitor domains and URL cannibalization, and delivers webhook-driven rank alerts — all managed through a real-time React dashboard with PDF/CSV reporting and a dark-themed analytics UI.",
+  "longDescription": [
+    "Built a production multi-client SEO intelligence platform that tracks Google search rankings across keywords and geographic locations end-to-end. The provider-agnostic scan engine supports three interchangeable SERP data sources — SerpAPI, DataForSEO, and self-hosted SearXNG — with runtime switching via an admin endpoint and zero code changes. Each scan processes keywords in concurrent batches of 5, paginates up to 3 SERP pages (30 results) with early termination when the client domain is found, applies exponential backoff retry (3 attempts), and extracts organic rank, URL, snippet, top-3 competitors, local pack position, SERP features (featured snippets, knowledge graph, People Also Ask, image pack), and related searches for keyword discovery. A nightly cron job (2 AM Central) filters clients by configurable scan frequency (daily/weekly/monthly), prevents duplicate jobs, and fires webhooks with rank-alert payloads when keywords drop below per-client thresholds.",
+    "The analytics layer computes rank distribution buckets (top 3, page 1, page 2+, not ranked), historical rank deltas with directional indicators, URL cannibalization detection (multiple client URLs ranking for the same keyword), and competitor domain frequency analysis across the entire keyword portfolio. Keyword discovery automatically extracts related searches from SERP data and stores them as suggestions (is_target=0) with a one-click promote workflow to active tracking. Reporting includes streaming CSV export via fast-csv, and client-side multi-page PDF generation (jsPDF + html2canvas) with branded cover pages, summary charts, keyword cards with 7-day sparkline trends, competitor landscape bar charts, and cannibalization tables. Bulk keyword management supports CSV import with validation, per-keyword tag and frequency overrides, and location-based filtering.",
+    "The React 19 frontend uses a dark-themed UI (Tailwind CSS + Radix/Shadcn components) with real-time scan progress polling, animated summary stat cards, city-tab location filtering, a searchable keyword grid with trend sparklines, and Recharts-powered competitor visualizations. The admin panel provides multi-tab management for clients (branding, logo upload, webhook config), keywords (CRUD + bulk CSV), keyword discovery (scan + promote), and API usage monitoring with per-provider quota tracking and provider switching. Security includes Helmet headers, CORS origin restriction, express-rate-limit (300 req/min), Bearer token auth with timing-safe comparison on admin endpoints, parameterized SQL queries, and file upload validation (2MB, MIME whitelist). Deployment is a three-service Docker Compose stack (Node.js API, Nginx-served React build, optional SearXNG) with persistent volumes, health checks, Nginx reverse proxy with Let's Encrypt SSL, and an alternative PM2 bare-metal option."
+  ],
+  "tech": [
+    "React 19",
+    "Tailwind CSS 3",
+    "Radix UI / Shadcn",
+    "Recharts",
+    "React Hook Form",
+    "Zod",
+    "jsPDF",
+    "html2canvas",
+    "Axios",
+    "Node.js 20",
+    "Express.js 4",
+    "SQLite3 (better-sqlite3, WAL mode)",
+    "SerpAPI",
+    "DataForSEO API",
+    "SearXNG",
+    "node-cron",
+    "Pino (structured logging)",
+    "Swagger / OpenAPI 3.0",
+    "fast-csv",
+    "PDFKit",
+    "Multer",
+    "Helmet",
+    "express-rate-limit",
+    "Docker",
+    "Docker Compose",
+    "Nginx",
+    "Let's Encrypt (Certbot)",
+    "PM2"
+  ],
+  "features": [
+    "Provider-agnostic SERP engine: seamlessly switch between SerpAPI, DataForSEO, and self-hosted SearXNG at runtime with zero code changes",
+    "Concurrent batch scanning with pagination (up to 3 pages / 30 results), early domain termination, exponential backoff retry (3 attempts), and per-keyword progress tracking",
+    "Nightly automated scans via cron (2 AM Central) with configurable per-client frequency (daily/weekly/monthly), duplicate job prevention, and inter-client delay",
+    "Rank distribution analytics: Top 3, Page 1, Page 2+, Not Ranked buckets with historical rank deltas and directional change indicators",
+    "URL cannibalization detection identifying multiple client URLs ranking for the same keyword across locations",
+    "Competitor domain frequency analysis aggregating top-20 competitor appearances across the entire keyword portfolio with percentage breakdowns",
+    "Keyword discovery from SERP related searches with one-click promote workflow to convert suggestions into active tracking targets",
+    "SERP feature detection: featured snippets, knowledge graph, People Also Ask, local pack position (1-3), and image pack",
+    "Multi-client management with per-client branding (logo, color), domain configuration, scan frequency, webhook URL, and rank alert thresholds",
+    "Real-time dark-themed React dashboard with animated stat cards, city-tab location filtering, keyword grid with 7-day sparkline trends, and Recharts competitor charts",
+    "PDF report generation (jsPDF + html2canvas) with branded cover pages, summary charts, keyword cards, competitor landscape, and cannibalization analysis",
+    "Streaming CSV export and bulk CSV keyword import with validation, per-keyword tags, and frequency overrides",
+    "Webhook notification system delivering rank-alert payloads when keywords drop below configurable per-client thresholds",
+    "Security hardening: Helmet headers, CORS origin restriction, rate limiting (300 req/min), Bearer token auth with timing-safe comparison, parameterized queries, file upload validation",
+    "Three-service Docker Compose deployment (API, Nginx-served frontend, SearXNG) with persistent volumes, health checks, Nginx reverse proxy, and Let's Encrypt SSL automation"
+  ],
+  "role": "Lead Developer",
+  "year": "2026"
+},
+    {
   "id": 5,
   "title": "P3 Lite",
   "description": "Fully automated SEO content publishing pipeline that generates ~1,200-word blog articles via AI (Claude or GPT), runs two-pass quality assurance with keyword density and banned-phrase enforcement, and publishes directly to client WordPress sites via REST API — replacing a 90-minute manual workflow with a 2-minute, $0.05-per-article automated process managed through a real-time web dashboard.",
@@ -64,7 +123,7 @@
     "JSON data integrity with automatic .bak snapshot creation and corruption auto-recovery from backups",
     "Single docker-compose.yml deployment with optional Nginx reverse proxy and Let's Encrypt SSL automation"
   ],
-  "role": "Solo Developer (Personal Project)",
+  "role": "Solo Developer",
   "year": "2026"
 },
     {
